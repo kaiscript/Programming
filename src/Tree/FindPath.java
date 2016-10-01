@@ -52,6 +52,23 @@ public class FindPath {
 		
 	}
 
+	private ArrayList<ArrayList<Integer>> allList = new ArrayList<ArrayList<Integer>>();
+	private ArrayList<Integer> list = new ArrayList<>();
+	
+	public ArrayList<ArrayList<Integer>> FindPath1(TreeNode root, int target) {
+		if(root==null)
+			return allList;
+		list.add(root.val);
+		target-=root.val;
+		if(root.left==null && root.right==null && target==0)
+			allList.add(new ArrayList<>(list));
+		FindPath1(root.left, target);
+		FindPath1(root.right, target);
+		list.remove(list.size()-1);
+		return allList;
+	}
+	
+	
 	public static void main(String[] args) {
 
 	}
