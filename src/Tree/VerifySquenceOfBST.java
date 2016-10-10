@@ -19,7 +19,7 @@ public class VerifySquenceOfBST {
 	public boolean isBST(int[] sequence,int start,int end){
 		if(start>=end)  //说明这一个栈帧是符合上述的情况也就是后续遍历的正确性
 			return true;
-		int curElement = sequence[end];   //根节点值
+		int curElement = sequence[end];   //根节点值z
 		int spiltIndex;
 		//从左边开始遍历，找到比curElement大和比curElement小的分界点，也就是分成左右子树的分界点。
 		for(spiltIndex=start;spiltIndex<end && sequence[spiltIndex]<curElement;spiltIndex++); 
@@ -33,8 +33,5 @@ public class VerifySquenceOfBST {
 		return isBST(sequence, start, spiltIndex) && isBST(sequence, spiltIndex+1, end-1);//end-1的-1是因为要去掉后序遍历最后一个也即是根节点
 	}
 	
-	public static void main(String[] args) {
-		
-	}
 
 }

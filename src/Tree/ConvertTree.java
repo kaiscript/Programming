@@ -20,6 +20,38 @@ public class ConvertTree {
 	    }
 
 	}
+
+	public TreeNode Conver1(TreeNode head){
+	    TreeNode lastNodeInList = null;
+	    ConvertByInOrder(head,lastNodeInList);
+        while (head != null) {
+            head = head.left;
+        }
+        return head;
+    }
+
+	/**
+	 * 根据中序遍历得思想。递归
+	 * @param node
+	 * @param lastNodeInList
+     * @return
+     */
+	public void ConvertByInOrder(TreeNode node,TreeNode lastNodeInList){
+		if(node==null)
+			return;
+		TreeNode current = node;
+		if (current.left != null) {
+			ConvertByInOrder(current.left,lastNodeInList);
+		}
+		current.left = lastNodeInList; //将当前节点的next指向前面链表的最后一个节点
+		if (lastNodeInList != null)  //前面链表的最后一个节点的next指向当前节点
+			lastNodeInList.right = current;
+		lastNodeInList = current;  //完成一个节点的连接，向前移
+		if (current.right != null) {
+			ConvertByInOrder(current.right,lastNodeInList);
+		}
+	}
+    /////////////////////////////////////////////////////////////////
 	/*解题思路：
 	1.将左子树构造成双链表，并返回链表头节点。
 	2.定位至左子树双链表最后一个节点。
@@ -52,7 +84,7 @@ public class ConvertTree {
         return left!=null?left:root;
     }
 	
-	
+	///////////////////////////////////////
 	TreeNode head = null;
 	TreeNode p = null;
 	//中序遍历
@@ -67,7 +99,7 @@ public class ConvertTree {
 		else{
 			p.right = root;
 			root.left = p;
-			p = p.right;//root
+			p = p.right;//p到达了当前的根节点
 		}
 		ConvertSub(root.right);
 		
@@ -77,9 +109,6 @@ public class ConvertTree {
         ConvertSub(pRootOfTree);
         return head;
     }
-	
-	public static void main(String[] args) {
-		
-	}
+	////////////////////////////////////////////
 
 }

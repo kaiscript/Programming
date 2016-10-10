@@ -35,7 +35,26 @@ public class Mirror {
 			Mirror(root.right);
 		
     }
-	
+
+	/**
+	 * 从根节点开始，交换当前节点的左右孩子。再递归地遍历左右孩子。
+	 * 也系阔以滴
+	 * @param root
+     */
+    public void Mirror0(TreeNode root){
+		if (root == null) {
+			return;
+		}
+		if (root.left!=null || root.right!=null) {
+			TreeNode temp = root.left;
+			root.left = root.right;
+			root.right = temp;
+
+		}
+		Mirror0(root.left);
+		Mirror0(root.right);
+	}
+
 	public static void main(String[] args) {
 		
 	}

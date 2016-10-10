@@ -31,7 +31,16 @@ public class ReverseList {
 		}
 		return p;
 	}
-	
+
+	public ListNode ReverseListByRecur(ListNode head){
+	    if(head==null || head.next==null)  //
+            return head;
+        ListNode reverserNode = ReverseListByRecur(head.next); //反转后面的链表，走到链表的末尾节点
+        head.next.next = head;//反转指针
+        head.next = null;
+        return reverserNode;
+    }
+
 	//这样做在oj就会超时，我也搞不懂。上面不会
 	public ListNode ReverseList0(ListNode head) {
 		if(head==null)
